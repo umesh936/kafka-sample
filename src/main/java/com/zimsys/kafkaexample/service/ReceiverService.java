@@ -15,16 +15,20 @@ public class ReceiverService {
     private final Logger LOG = LoggerFactory.getLogger(ReceiverService.class);
 
     @KafkaListener(topics = "${spring.kafka.topic}")
-    private synchronized void consumeKafkaQueue(List<String> message, Acknowledgment acknowledgment) {
+    private synchronized void consumeKafkaQueue(List<String> message) {
         LOG.info("Received message count from kafka queue: {}", message.size());
-        LOG.info(" Loaded Acknowledge class : " + acknowledgment.getClass().getCanonicalName());
-        for (String msg : message) {
-            System.out.println(msg);
-            if (msg.equalsIgnoreCase("test 13")) {
-                throw new RuntimeException("batch failed , now lets see the offset....");
-            }
-            acknowledgment.acknowledge();
+        try{
+            Long l = Long.valueOf(message.get(0));
+        }catch (Exception e){
+            System.out.println("Error :::: "+ e.getMessage());
         }
+//        for (String msg : message) {
+//            System.out.println(msg);
+//            if (msg.equalsIgnoreCase("test 13")) {
+//                throw new RuntimeException("batch failed , now lets see the offset....");
+//            }
+//            acknowledgment.acknowledge();
+//        }
 
     }
 }

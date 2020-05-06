@@ -8,7 +8,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.listener.SeekToCurrentBatchErrorHandler;
 
-public class SeekError extends SeekToCurrentBatchErrorHandler {
+public class SeekBatchError extends SeekToCurrentBatchErrorHandler {
 
 
     @Override

@@ -13,6 +13,11 @@ public class SenderService {
 
     private final Logger LOG = LoggerFactory.getLogger(SenderService.class);
 
+    @PostConstruct
+    public void abc(){
+        System.out.print("Sending test messages ");
+        this.send("test.test.test");
+    }
     @Autowired
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private KafkaTemplate<String, String> kafkaTemplate;
